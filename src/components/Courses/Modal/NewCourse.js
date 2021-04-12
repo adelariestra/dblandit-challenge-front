@@ -7,10 +7,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import { TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,32 +48,30 @@ const CourseModal = (props) => {
                 onClose={handleClose}
                 aria-labelledby="student-dialog-title"
             >
-                <DialogTitle id="student-dialog-title">COURSE_NAME Student Addition</DialogTitle>
+                <DialogTitle id="student-dialog-title">Course Creation</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Select the student you want to add to the course.
-          </DialogContentText>
+                        Insert the new course's data.
+                    </DialogContentText>
                     <form className={classes.form} noValidate>
                         <TextField
                             autoFocus
                             margin="dense"
-                            id="name"
+                            id="theme"
                             label="Theme"
                             type="text"
                             fullWidth
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
-                            id="name"
+                            id="year"
                             label="Year"
                             type="number"
                             fullWidth
                         />
                         <TextField
-                            autoFocus
                             margin="dense"
-                            id="name"
+                            id="duration"
                             label="Duration"
                             type="number"
                             fullWidth
@@ -88,10 +82,10 @@ const CourseModal = (props) => {
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Cancel
-          </Button>
+                    </Button>
                     <Button onClick={handleClose} color="primary" disabled={false}>
                         Add
-          </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>
