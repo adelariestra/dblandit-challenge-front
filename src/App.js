@@ -2,20 +2,17 @@ import './App.css';
 
 import Layout from './views/layout/Layout'
 
-import AppBar from '@material-ui/core/AppBar';
+import purple from '@material-ui/core/colors/purple';
+import grey from '@material-ui/core/colors/grey';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -31,13 +28,6 @@ function App() {
   const useStyles = makeStyles((theme) => ({
     icon: {
       marginRight: theme.spacing(2),
-    },
-    heroContent: {
-      backgroundColor: theme.palette.background.paper,
-      padding: theme.spacing(8, 0, 6),
-    },
-    heroButtons: {
-      marginTop: theme.spacing(4),
     },
     cardGrid: {
       paddingTop: theme.spacing(8),
@@ -55,7 +45,7 @@ function App() {
       flexGrow: 1,
     },
     footer: {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.secondary,
       padding: theme.spacing(6),
     },
   }));
@@ -73,8 +63,18 @@ function App() {
   const classes = useStyles();
   const cards = [1, 2, 3, 4, 5, 6, 7, 8];
 
+
   return (
-    <div>
+    <ThemeProvider theme={createMuiTheme({
+      palette: {
+        primary: {
+          main: purple[500],
+        },
+        secondary: {
+          main: grey[500],
+        },
+      },
+    })}>
       <Layout>
         <Container maxWidth="sm">
           <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
@@ -143,7 +143,8 @@ function App() {
           </Dialog>
         </Container>
       </Layout>
-    </div>
+    </ThemeProvider>
+
   );
 }
 
