@@ -4,8 +4,8 @@ import { getData } from '../../services/api/courses';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import NewCourseModal from '../../components/Courses/Modal/NewCourse.js'
-import AddStudentModal from '../../components/Courses/Modal/AddStudent.js'
+import NewCourseModal from '../../components/Modal/NewCourse.js'
+import AddStudentModal from '../../components/Modal/AddStudent.js'
 import CourseGrid from '../../components/Courses/Grid'
 
 
