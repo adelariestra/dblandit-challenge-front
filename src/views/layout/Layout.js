@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Container from '@material-ui/core/Container';
+
 import Header from './Header'
 import Footer from './Footer'
 
@@ -7,9 +9,10 @@ const Layout = (props) => {
     return (
         <div>
             <Header />
-            <div>
+            <Container maxWidth="md">
                 {props.children}
-            </div>
+            </Container >
+
             <Footer />
         </div>
     );
