@@ -51,7 +51,7 @@ const CourseModal = (props) => {
     return (
         <div>
             <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                + Add Course
+                + Add Student
             </Button>
             <Dialog
                 fullWidth={true}
