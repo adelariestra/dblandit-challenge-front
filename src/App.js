@@ -20,11 +20,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
-import Switch from '@material-ui/core/Switch';
 
 function App() {
   const useStyles = makeStyles((theme) => ({
@@ -60,8 +58,6 @@ function App() {
   }));
 
   const [open, setOpen] = React.useState(false);
-  const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('sm');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -111,23 +107,23 @@ function App() {
             + Add Course
       </Button>
           <Dialog
-            fullWidth={fullWidth}
-            maxWidth={maxWidth}
+            fullWidth={true}
+            maxWidth="sm"
             open={open}
             onClose={handleClose}
-            aria-labelledby="max-width-dialog-title"
+            aria-labelledby="student-dialog-title"
           >
-            <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
+            <DialogTitle id="student-dialog-title">COURSE_NAME Student Addition</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                You can set my maximum width and whether to adapt or not.
+                Select the student you want to add to the course.
           </DialogContentText>
               <form className={classes.form} noValidate>
                 <FormControl className={classes.formControl}>
-                  <InputLabel htmlFor="max-width">maxWidth</InputLabel>
+                  <InputLabel htmlFor="student">Student</InputLabel>
                   <Select
                     autoFocus
-                    value={maxWidth}
+                    value="s0"
                     inputProps={{
                       name: 'student',
                       id: 'studentid',
@@ -144,8 +140,11 @@ function App() {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
-                Close
-              </Button>
+                Cancel
+          </Button>
+              <Button onClick={handleClose} color="primary">
+                Add
+          </Button>
             </DialogActions>
           </Dialog>
         </Container>
