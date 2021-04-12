@@ -33,12 +33,13 @@ const CourseGrid = (props) => {
             <Grid container spacing={4}>
                 {props.cards.map((card) => (
                     <Grid item key={card} xs={12} sm={6} md={4}>
-                        <Link color="inherit" href="https://localhost:3000/courses/COURSE_ID">
+                        {/* TODO: change link to API url */}
+                        <Link color="inherit" href={`https://localhost:4000/courses/${card.id}`}>
                             <Card className={classes.card}>
                                 <CardContent className={classes.cardContent}>
                                     <Typography gutterBottom variant="h5" component="h2">
-                                        COURSE_NAME - COURSE_YEAR
-                            </Typography>
+                                        {card.theme + '-' + card.year}
+                                    </Typography>
                                 </CardContent>
                             </Card>
                         </Link>{' '}
