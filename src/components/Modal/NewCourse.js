@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import {setData} from '../../services/api/courses'
+import { setData } from '../../services/api/courses'
 
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,18 +47,26 @@ const CourseModal = (props) => {
         setOpen(false);
     };
 
-    const handleCreation = () => {
+    const handleCreation = (e) => {
+        e.preventDefault();
         setLoading(true);
 
-        // POST DATA
         const res = setData({
-
+            theme: e.target.theme.value,
+            year: e.target.year.value,
+            duration: e.target.duration.value
         })
-
-        props.fetchData();
-
-        handleClose();
-        setLoading(false);
+        .then((res)=>{
+            props.fetchData();
+        })
+        .catch((err)=>{
+            //TODO: show error
+            console.log(err)
+        })
+        .finally(()=>{
+            handleClose();
+            setLoading(false);
+        })
     }
 
     return (
@@ -78,41 +86,45 @@ const CourseModal = (props) => {
                     <DialogContentText>
                         Insert the new course's data.
                     </DialogContentText>
-                    {loading?<CircularProgress className={classes.form}/> :
-                    <form className={classes.form} noValidate>
-                    <TextField
-                            autoFocus
-                            margin="dense"
-                            id="theme"
-                            label="Theme"
-                            type="text"
-                            fullWidth
-                        />
-                        <TextField
-                            margin="dense"
-                            id="year"
-                            label="Year"
-                            type="number"
-                            fullWidth
-                        />
-                        <TextField
-                            margin="dense"
-                            id="duration"
-                            label="Duration"
-                            type="number"
-                            fullWidth
-                        />
+                    <form id="course-creation" onSubmit={handleCreation} className={classes.form} noValidate >
+                        {loading ? <CircularProgress className={classes.form} /> :
+                            <div>
+
+                                <TextField
+                                    autoFocus
+                                    margin="dense"
+                                    id="theme"
+                                    label="Theme"
+                                    type="text"
+                                    fullWidth
+                                />
+                                <TextField
+                                    margin="dense"
+                                    id="year"
+                                    label="Year"
+                                    type="number"
+                                    fullWidth
+                                />
+                                <TextField
+                                    margin="dense"
+                                    id="duration"
+                                    label="Duration"
+                                    type="number"
+                                    fullWidth
+                                />
+                            </div>
+
+                        }
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary" disabled={loading}>
+                                Cancel
+                                </Button>
+                            <Button type="submit" color="primary" disabled={loading}>
+                                Add
+                            </Button>
+                        </DialogActions>
                     </form>
-                }
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary" disabled={loading}>
-                        Cancel
-                    </Button>
-                    <Button type="submit" onClick={handleCreation} color="primary" disabled={loading}>
-                        Add
-                    </Button>
-                </DialogActions>
             </Dialog>
         </div>
 
