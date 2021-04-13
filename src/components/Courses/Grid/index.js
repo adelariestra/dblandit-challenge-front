@@ -32,8 +32,8 @@ const CourseGrid = (props) => {
         <Container className={classes.cardGrid} >
             <Grid container spacing={4}>
                 {props.cards.map((card) => (
-                    <Grid item key={card} xs={12} sm={6} md={4}>
-                        <Link color="inherit" href={`/courses/${card.id}`}>
+                    <Grid item key={card._id} xs={12} sm={6} md={4}>
+                        <Link color="inherit" href={`/courses/${card._id}`}>
                             <Card className={classes.card}>
                                 <CardContent className={classes.cardContent}>
                                     <Typography gutterBottom variant="h5" component="h2">
