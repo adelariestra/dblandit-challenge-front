@@ -27,7 +27,7 @@ const CoursesList = () => {
             </Typography>
             <CourseGrid cards={courses}/>
             {/* TODO: Change position to be fixed */}
-            <NewCourseModal/>
+            <NewCourseModal fetchData={fetchCourses}/>
         </div>
     );
 };

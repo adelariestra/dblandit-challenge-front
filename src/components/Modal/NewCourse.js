@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import {setData} from '../../services/api/courses'
+
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -49,6 +51,11 @@ const CourseModal = (props) => {
         setLoading(true);
 
         // POST DATA
+        const res = setData({
+
+        })
+
+        props.fetchData();
 
         handleClose();
         setLoading(false);
@@ -102,7 +109,7 @@ const CourseModal = (props) => {
                     <Button onClick={handleClose} color="primary" disabled={loading}>
                         Cancel
                     </Button>
-                    <Button onClick={handleCreation} color="primary" disabled={loading}>
+                    <Button type="submit" onClick={handleCreation} color="primary" disabled={loading}>
                         Add
                     </Button>
                 </DialogActions>
