@@ -8,6 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { TextField } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -20,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         minWidth: 120,
     },
-    floatingButton:{
-        position:'fixed',
-        bottom:'5%',
+    floatingButton: {
+        position: 'fixed',
+        bottom: '5%',
         right: '10%',
-        background:'solid'
+        background: 'solid'
     }
 }));
 
@@ -32,6 +34,7 @@ const CourseModal = (props) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
     // MODAL HANDLERS
     const handleClickOpen = () => {
@@ -41,6 +44,11 @@ const CourseModal = (props) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleCreation = () => {
+
+        handleClose();
+    }
 
     return (
         <div>
@@ -60,36 +68,35 @@ const CourseModal = (props) => {
                         Insert the new course's data.
                     </DialogContentText>
                     <form className={classes.form} noValidate>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="theme"
-                            label="Theme"
-                            type="text"
-                            fullWidth
-                        />
-                        <TextField
-                            margin="dense"
-                            id="year"
-                            label="Year"
-                            type="number"
-                            fullWidth
-                        />
-                        <TextField
-                            margin="dense"
-                            id="duration"
-                            label="Duration"
-                            type="number"
-                            fullWidth
-                        />
-
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="theme"
+                                label="Theme"
+                                type="text"
+                                fullWidth
+                            />
+                            <TextField
+                                margin="dense"
+                                id="year"
+                                label="Year"
+                                type="number"
+                                fullWidth
+                            />
+                            <TextField
+                                margin="dense"
+                                id="duration"
+                                label="Duration"
+                                type="number"
+                                fullWidth
+                            />
                     </form>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={handleClose} color="primary" disabled={false}>
+                    <Button onClick={handleCreation} color="primary" disabled={loading}>
                         Add
                     </Button>
                 </DialogActions>

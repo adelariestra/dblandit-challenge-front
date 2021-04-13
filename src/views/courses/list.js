@@ -12,8 +12,8 @@ const CoursesList = () => {
     const [courses, setCourses] = useState([]);
 
     async function fetchCourses() {
-        // setCourses(await getData());
-        setCourses(coursesTestData);
+        setCourses(await getData());
+        // setCourses(coursesTestData);
     }
 
     useEffect(() => {
