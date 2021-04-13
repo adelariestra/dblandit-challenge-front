@@ -1,16 +1,16 @@
+import React from 'react';
 import './App.css';
-
 import Layout from './views/layout/Layout'
 
+// Theming
 import purple from '@material-ui/core/colors/purple';
 import grey from '@material-ui/core/colors/grey';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
+//Routing
+import { BrowserRouter as Router } from 'react-router-dom';
+import BaseRouter from './routes';
 
-import CoursesListView from './views/courses/list';
-import CoursesDetailedView from './views/courses/detailed';
-
-import React from 'react';
 
 
 function App() {
@@ -25,10 +25,11 @@ function App() {
         },
       },
     })}>
-      <Layout>
-        {/* <CoursesListView /> */}
-        <CoursesDetailedView />
-      </Layout>
+      <Router>
+        <Layout>
+          <BaseRouter />
+        </Layout>
+      </Router>
     </ThemeProvider>
 
   );
