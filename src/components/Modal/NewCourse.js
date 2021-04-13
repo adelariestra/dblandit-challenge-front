@@ -20,6 +20,12 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         minWidth: 120,
     },
+    floatingButton:{
+        position:'fixed',
+        bottom:'5%',
+        right: '10%',
+        background:'solid'
+    }
 }));
 
 const CourseModal = (props) => {
@@ -38,7 +44,7 @@ const CourseModal = (props) => {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button className={classes.floatingButton} variant="contained" color="primary" onClick={handleClickOpen}>
                 + Add Course
             </Button>
             <Dialog
