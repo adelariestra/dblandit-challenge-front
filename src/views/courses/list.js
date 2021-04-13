@@ -13,6 +13,7 @@ const CoursesList = () => {
     const [courses, setCourses] = useState([]);
 
     async function fetchCourses() {
+        console.log("awaiting");
         const res = await getData();
         setCourses(res);
     }
