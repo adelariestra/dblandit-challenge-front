@@ -46,8 +46,12 @@ const CourseModal = (props) => {
     };
 
     const handleCreation = () => {
+        setLoading(true);
+
+        // POST DATA
 
         handleClose();
+        setLoading(false);
     }
 
     return (
@@ -67,33 +71,35 @@ const CourseModal = (props) => {
                     <DialogContentText>
                         Insert the new course's data.
                     </DialogContentText>
+                    {loading?<CircularProgress className={classes.form}/> :
                     <form className={classes.form} noValidate>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="theme"
-                                label="Theme"
-                                type="text"
-                                fullWidth
-                            />
-                            <TextField
-                                margin="dense"
-                                id="year"
-                                label="Year"
-                                type="number"
-                                fullWidth
-                            />
-                            <TextField
-                                margin="dense"
-                                id="duration"
-                                label="Duration"
-                                type="number"
-                                fullWidth
-                            />
+                    <TextField
+                            autoFocus
+                            margin="dense"
+                            id="theme"
+                            label="Theme"
+                            type="text"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="year"
+                            label="Year"
+                            type="number"
+                            fullWidth
+                        />
+                        <TextField
+                            margin="dense"
+                            id="duration"
+                            label="Duration"
+                            type="number"
+                            fullWidth
+                        />
                     </form>
+                }
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={handleClose} color="primary" disabled={loading}>
                         Cancel
                     </Button>
                     <Button onClick={handleCreation} color="primary" disabled={loading}>
