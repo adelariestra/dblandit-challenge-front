@@ -7,10 +7,10 @@ import AddStudent from '../../components/Modal/AddStudent.js'
 import StudentsGrid from '../../components/Grid/StudentsGrid'
 
 const CoursesDetailedView = () => {
-    const [course, setCourse] = useState({});
+    const [course, setCourse] = useState({students:[]});
 
     async function fetchCourse() {
-        setCourse(await getDataWithId());
+        setCourse(await getDataWithId("60709f01b97d0e4924c4b73a"));
     }
 
     useEffect(() => {
@@ -22,7 +22,12 @@ const CoursesDetailedView = () => {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                 {course.theme+ ' - '+course.year}
             </Typography>
-            <StudentsGrid rows={course.students} />
+            <div>
+                {course.students.map(part=>{
+                    return <div>{part.student.lname+ ', '+part.student.fname}</div>
+                })}
+            </div>
+            {/* <StudentsGrid rows={course.students} /> */}
             {/* TODO: Change position to be fixed */}
             <AddStudent />
         </div>

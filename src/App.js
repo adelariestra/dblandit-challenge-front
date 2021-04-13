@@ -8,6 +8,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 
 import CoursesListView from './views/courses/list';
+import CoursesDetailedView from './views/courses/detailed';
 
 import React from 'react';
 
@@ -25,7 +26,8 @@ function App() {
       },
     })}>
       <Layout>
-        <CoursesListView />
+        {/* <CoursesListView /> */}
+        <CoursesDetailedView />
       </Layout>
     </ThemeProvider>
 
