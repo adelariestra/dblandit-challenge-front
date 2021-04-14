@@ -86,7 +86,7 @@ const CourseModal = (props) => {
                     <DialogContentText>
                         Insert the new course's data.
                     </DialogContentText>
-                    <form id="course-creation" onSubmit={handleCreation} className={classes.form} noValidate >
+                    <form id="course-creation" onSubmit={handleCreation} className={classes.form} required={true} >
                         {loading ? <CircularProgress className={classes.form} /> :
                             <div>
 
@@ -97,6 +97,8 @@ const CourseModal = (props) => {
                                     label="Theme"
                                     type="text"
                                     fullWidth
+                                    required={true}
+
                                 />
                                 <TextField
                                     margin="dense"
@@ -104,6 +106,7 @@ const CourseModal = (props) => {
                                     label="Year"
                                     type="number"
                                     fullWidth
+                                    required={true}
                                 />
                                 <TextField
                                     margin="dense"
@@ -111,6 +114,7 @@ const CourseModal = (props) => {
                                     label="Duration"
                                     type="number"
                                     fullWidth
+                                    required={true}
                                 />
                             </div>
 
