@@ -7,10 +7,18 @@ import AddStudent from '../../components/Modal/AddStudent.js'
 import StudentsGrid from '../../components/Grid/StudentsGrid'
 
 const CoursesDetailedView = (props) => {
-    const [course, setCourse] = useState({students:[]});
+    const [course, setCourse] = useState({theme:'loading', year:2020,students:[]});
+    const [loading, setLoading] = useState(false);
 
     async function fetchCourse() {
-        setCourse(await getDataWithId(props.match.params.courseId));
+        setLoading(true);
+        const data = await getDataWithId(props.match.params.courseId);
+        const courseData = { ...data,
+            students: data.students.map((part) => { 
+            return ({ ...part, id: part.student._id }) 
+        })}
+        setCourse(courseData);
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -22,14 +30,8 @@ const CoursesDetailedView = (props) => {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                 {course.theme+ ' - '+course.year}
             </Typography>
-            <div>
-                {course.students.map(part=>{
-                    return <div>{part.student.lname+ ', '+part.student.fname}</div>
-                })}
-            </div>
-            {/* <StudentsGrid rows={course.students} /> */}
-            {/* TODO: Change position to be fixed */}
-            <AddStudent />
+            <StudentsGrid loading={loading} students={course.students} />
+            {/* <AddStudent /> */}
         </div>
     );
 };
