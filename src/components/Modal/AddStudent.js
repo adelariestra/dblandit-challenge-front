@@ -46,6 +46,7 @@ const CourseModal = (props) => {
 
     // DATA HANDLER
     const handleStudentChange = (event) => {
+        console.log(event);
         setStudent(event.target.value);
     }
 
@@ -59,8 +60,10 @@ const CourseModal = (props) => {
     };
 
     async function fetchData() {
-        const data = await getData();
-        setStudents(data);
+        var stData = await getData();
+        stData = stData.map((st=>{return {...st, id:st._id}}))
+        
+        setStudents(stData);
     }
 
     useEffect(() => { 
@@ -97,7 +100,7 @@ const CourseModal = (props) => {
                                 }}
                             >
                                 <MenuItem value={false}>...</MenuItem>
-                                {props.students.map((st) => {
+                                {students.map((st) => {
                                     return (
                                         <MenuItem value={st.id}>{st.fname + ' ' + st.lname}</MenuItem>
                                     )
