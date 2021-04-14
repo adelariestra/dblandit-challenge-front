@@ -43,7 +43,6 @@ const CourseGrid = (props) => {
                         field: 'theme',
                         flex: 1,
                         renderCell: (params)=>{
-                            console.log(params)
                             return (<Link color="inherit" href={`/courses/${params.id}`}>
                                 {params.value}
                             </Link>)
