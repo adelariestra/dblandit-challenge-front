@@ -57,7 +57,7 @@ const StudentAdditionModal = (props) => {
         e.preventDefault();
         setLoading(true);
 
-        const res = postNewStudent(props.courseId,{
+        const res = postNewStudent(props.courseId, {
             student: student,
             score: e.target.score.value
         })
@@ -107,42 +107,42 @@ const StudentAdditionModal = (props) => {
                 <DialogContent>
                     <DialogContentText>
                         Select the student you want to add to the course.
-          </DialogContentText>
+                    </DialogContentText>
                     <form id="student-addition" onSubmit={handleAddition} className={classes.form}>
-                       <InputLabel htmlFor="student">Student</InputLabel>
-                            <Select
-                                autoFocus
-                                inputProps={{
-                                    name: 'student',
-                                    id: 'id',
-                                }}
-                                value={student}
-                                onChange={handleStudentChange}
-                                required={true}
-                                id='studentId'
-                            >
-                                <MenuItem id='false' value={false}>...</MenuItem>
-                                {students.map((st) => {
-                                    return (
-                                        <MenuItem id={st.id} value={st.id}>{st.fname + ' ' + st.lname}</MenuItem>
-                                    )
-                                })}
-                            </Select>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="score"
-                                label="Score"
-                                type="number"
-                                InputProps={{
-                                    inputProps: { 
-                                        max: 10, min: 0 
-                                    }
-                                }}
-                                fullWidth
-                                required={true}
+                        <InputLabel htmlFor="student">Student</InputLabel>
+                        <Select
+                            autoFocus
+                            inputProps={{
+                                name: 'student',
+                                id: 'id',
+                            }}
+                            value={student}
+                            onChange={handleStudentChange}
+                            required={true}
+                            id='studentId'
+                        >
+                            <MenuItem id='false' value={false}>...</MenuItem>
+                            {students.map((st) => {
+                                return (
+                                    <MenuItem id={st.id} value={st.id}>{st.fname + ' ' + st.lname}</MenuItem>
+                                )
+                            })}
+                        </Select>
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="score"
+                            label="Score"
+                            type="number"
+                            InputProps={{
+                                inputProps: {
+                                    max: 10, min: 0
+                                }
+                            }}
+                            fullWidth
+                            required={true}
 
-                            />
+                        />
                         <DialogActions>
                             <Button onClick={handleClose} color="primary" disabled={loading}>
                                 Cancel

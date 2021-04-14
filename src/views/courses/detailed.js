@@ -36,7 +36,7 @@ const CoursesDetailedView = (props) => {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                 {course.theme + ' - ' + course.year}
             </Typography>
-            <StudentsGrid loading={loading} students={course.students} />
+            <StudentsGrid courseId={course._id} fetchData={fetchCourse} loading={loading} students={course.students} />
             <AddStudent courseId={course._id} fetchData={fetchCourse}/>
         </div>
     );

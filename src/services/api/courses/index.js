@@ -1,4 +1,4 @@
-import { get, post } from '../axios';
+import { get, post, del } from '../axios';
 
 export async function getData(params) {
 	const res = await get('courses', params);
@@ -18,6 +18,12 @@ export async function getDataWithId(courseId) {
 
 export async function postNewStudent(courseId,reqData) {
 	const res = await post(`courses/${courseId}/students`,reqData);
+
+	return res.data;
+}
+
+export async function deleteStudent(courseId,studentId) {
+	const res = await del(`courses/${courseId}/students/${studentId}`);
 
 	return res.data;
 }
