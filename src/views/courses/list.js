@@ -12,7 +12,8 @@ const CoursesList = () => {
     const [courses, setCourses] = useState([]);
 
     async function fetchCourses(params) {
-        setCourses(await getData(params));
+        const coursesData = await getData(params); 
+        setCourses(coursesData.map((card) => { return ({ ...card, id: card._id }) }));
     }
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const CoursesList = () => {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                 Courses
             </Typography>
-            <CourseGrid cards={courses} fetchData={fetchCourses}/>
+            <CourseGrid courses={courses} fetchData={fetchCourses}/>
             <NewCourseModal fetchData={fetchCourses}/>
         </div>
     );
