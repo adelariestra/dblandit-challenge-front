@@ -103,7 +103,7 @@ const StudentAdditionModal = (props) => {
                 onClose={handleClose}
                 aria-labelledby="student-dialog-title"
             >
-                <DialogTitle id="student-dialog-title">COURSE_NAME Student Addition</DialogTitle>
+                <DialogTitle id="student-dialog-title">Student Addition</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         Select the student you want to add to the course.
