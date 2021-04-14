@@ -6,11 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import AddStudent from '../../components/Modal/AddStudent.js'
 import StudentsGrid from '../../components/Grid/StudentsGrid'
 
-const CoursesDetailedView = () => {
+const CoursesDetailedView = (props) => {
     const [course, setCourse] = useState({students:[]});
 
     async function fetchCourse() {
-        setCourse(await getDataWithId("60709f01b97d0e4924c4b73a"));
+        setCourse(await getDataWithId(props.match.params.courseId));
     }
 
     useEffect(() => {
