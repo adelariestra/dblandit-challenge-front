@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import NewCourseModal from '../../components/Modal/NewCourse.js'
 import CourseGrid from '../../components/Grid/CoursesGrid'
 
-import coursesTestData from '../../constants/fixture/courses'
 
 const CoursesList = () => {
     const [courses, setCourses] = useState([]);

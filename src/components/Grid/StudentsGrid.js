@@ -10,8 +10,8 @@ const StudentsGrid = (props) => {
     const handleDeletion = (id) => {
         setLoadingDel(true);
         
-        const res = deleteStudent(props.courseId,id)
-        .then((res) => {
+        deleteStudent(props.courseId,id)
+        .then(() => {
             props.fetchData();
         })
         .catch((err) => {

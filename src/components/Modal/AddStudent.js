@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +7,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -23,10 +22,6 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         margin: 'auto',
         width: 'fit-content',
-    },
-    formControl: {
-        marginTop: theme.spacing(2),
-        minWidth: 120,
     },
     floatingButton: {
         position: 'fixed',
@@ -57,11 +52,11 @@ const StudentAdditionModal = (props) => {
         e.preventDefault();
         setLoading(true);
 
-        const res = postNewStudent(props.courseId, {
+        postNewStudent(props.courseId, {
             student: student,
             score: e.target.score.value
         })
-            .then((res) => {
+            .then(() => {
                 props.fetchData();
             })
             .catch((err) => {

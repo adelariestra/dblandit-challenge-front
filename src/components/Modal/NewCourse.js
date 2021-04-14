@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { setData } from '../../services/api/courses'
 
@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
 const CourseModal = (props) => {
     const classes = useStyles();
 
-    const [open, setOpen] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     // MODAL HANDLERS
     const handleClickOpen = () => {
@@ -51,22 +51,22 @@ const CourseModal = (props) => {
         e.preventDefault();
         setLoading(true);
 
-        const res = setData({
+        setData({
             theme: e.target.theme.value,
             year: e.target.year.value,
             duration: e.target.duration.value
         })
-        .then((res)=>{
-            props.fetchData();
-        })
-        .catch((err)=>{
-            //TODO: show error
-            console.log(err)
-        })
-        .finally(()=>{
-            handleClose();
-            setLoading(false);
-        })
+            .then(() => {
+                props.fetchData();
+            })
+            .catch((err) => {
+                //TODO: show error
+                console.log(err)
+            })
+            .finally(() => {
+                handleClose();
+                setLoading(false);
+            })
     }
 
     return (
