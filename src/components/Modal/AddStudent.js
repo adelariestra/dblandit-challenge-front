@@ -93,7 +93,7 @@ const StudentAdditionModal = (props) => {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button className={classes.floatingButton} variant="contained" color="primary" onClick={handleClickOpen}>
                 + Add Student
             </Button>
             <Dialog
