@@ -6,7 +6,10 @@ const CourseGrid = (props) => {
     const [loading, setLoading] = React.useState(false);
 
     const onFilterChange = React.useCallback((params) => {
-        const filter = params.filterModel.items[0].value;
+        var filter = {};
+        var colFilter = params.filterModel.items[0];
+        filter[colFilter.columnField] = colFilter.value;
+        console.log(params.filterModel)
         setFilterValue(filter);
     }, []);
 
@@ -15,7 +18,7 @@ const CourseGrid = (props) => {
 
         (async () => {
             setLoading(true);
-            await props.fetchData({ theme: "ADR" })
+            await props.fetchData(filterValue)
             
             if (!active) {
                 return;
