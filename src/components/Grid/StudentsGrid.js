@@ -10,8 +10,9 @@ const StudentsGrid = (props) => {
             <DataGrid
                 rows={props.students}
                 columns={[
-                    { headerName: 'Name', field: 'fname', flex: 0.5 },
-                    { headerName: 'Last Name', field: 'lname', flex: 0.5 }
+                    { headerName: 'Name', field: 'fname', flex: 0.4 },
+                    { headerName: 'Last Name', field: 'lname', flex: 0.4 },
+                    { headerName: 'Score', field: 'score', flex: 0.2 }
                 ]}
                 loading={props.loading}
                 hideFooter={true}
