@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
+import Link from '@material-ui/core/Link';
+
 
 const CourseGrid = (props) => {
     const [filterValue, setFilterValue] = React.useState({});
@@ -9,7 +11,6 @@ const CourseGrid = (props) => {
         var filter = {};
         var colFilter = params.filterModel.items[0];
         filter[colFilter.columnField] = colFilter.value;
-        console.log(params.filterModel)
         setFilterValue(filter);
     }, []);
 
@@ -19,7 +20,7 @@ const CourseGrid = (props) => {
         (async () => {
             setLoading(true);
             await props.fetchData(filterValue)
-            
+
             if (!active) {
                 return;
             }
@@ -36,7 +37,19 @@ const CourseGrid = (props) => {
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
                 rows={props.courses}
-                columns={[{headerName:'Theme', field: 'theme', flex: 1 }, {headerName:'Year',  field: 'year', flex: 0.5,type: 'number'}]}
+                columns={[
+                    {
+                        headerName: 'Theme',
+                        field: 'theme',
+                        flex: 1,
+                        renderCell: (params)=>{
+                            console.log(params)
+                            return (<Link color="inherit" href={`/courses/${params.id}`}>
+                                {params.value}
+                            </Link>)
+                        }
+                    },
+                    { headerName: 'Year', field: 'year', flex: 0.5, type: 'number' }]}
                 filterMode="server"
                 onFilterModelChange={onFilterChange}
                 loading={loading}
