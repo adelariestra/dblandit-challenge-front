@@ -34,7 +34,7 @@ const CourseGrid = (props) => {
     }, [filterValue]);
 
     return (
-        <div style={{ height:600, width: '100%' }}>
+        <div style={{ height: 600, width: '100%' }}>
             <DataGrid
                 rows={props.courses}
                 columns={[
@@ -42,7 +42,7 @@ const CourseGrid = (props) => {
                         headerName: 'Theme',
                         field: 'theme',
                         flex: 1,
-                        renderCell: (params)=>{
+                        renderCell: (params) => {
                             return (<Link color="inherit" href={`/courses/${params.id}`}>
                                 {params.value}
                             </Link>)
