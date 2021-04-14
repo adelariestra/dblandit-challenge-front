@@ -15,3 +15,9 @@ export async function getDataWithId(courseId) {
 
 	return res.data;
 }
+
+export async function postNewStudent(courseId,reqData) {
+	const res = await post(`courses/${courseId}/students`,reqData);
+
+	return res.data;
+}

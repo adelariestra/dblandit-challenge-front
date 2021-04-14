@@ -12,17 +12,27 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
+import { postNewStudent } from '../../services/api/courses';
+import { getData } from '../../services/api/students';
+
+
 const useStyles = makeStyles((theme) => ({
     form: {
         display: 'flex',
         flexDirection: 'column',
         margin: 'auto',
         width: 'fit-content',
-      },
-      formControl: {
+    },
+    formControl: {
         marginTop: theme.spacing(2),
         minWidth: 120,
-      },
+    },
+    floatingButton: {
+        position: 'fixed',
+        bottom: '5%',
+        right: '10%',
+        background: 'solid'
+    }
 }));
 
 const CourseModal = (props) => {
@@ -31,11 +41,14 @@ const CourseModal = (props) => {
     const [open, setOpen] = React.useState(false);
     const [student, setStudent] = React.useState(false);
 
+    const [students, setStudents] = React.useState([]);
+    const [loading, setLoading] = React.useState(false);
+
     // DATA HANDLER
     const handleStudentChange = (event) => {
         setStudent(event.target.value);
     }
-    
+
     // MODAL HANDLERS
     const handleClickOpen = () => {
         setOpen(true);
@@ -45,8 +58,14 @@ const CourseModal = (props) => {
         setOpen(false);
     };
 
-    // TODO: REMOVE TEST DATA
-    const students = [{ id: 0, fname: "student0" }, { id: 1, fname: "student1" }, { id: 2, fname: "student2" }, { id: 3, fname: "student3" }]
+    async function fetchData() {
+        const data = await getData();
+        setStudents(data);
+    }
+
+    useEffect(() => { 
+        fetchData(); 
+    },[student]);
 
     return (
         <div>
@@ -78,7 +97,7 @@ const CourseModal = (props) => {
                                 }}
                             >
                                 <MenuItem value={false}>...</MenuItem>
-                                {students.map((st) => {
+                                {props.students.map((st) => {
                                     return (
                                         <MenuItem value={st.id}>{st.fname + ' ' + st.lname}</MenuItem>
                                     )
