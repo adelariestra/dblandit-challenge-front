@@ -33,10 +33,12 @@ const CourseGrid = (props) => {
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
                 rows={props.courses}
-                columns={[{ field: 'theme', width: 150 }, { field: 'year', width: 150 }]}
+                columns={[{headerName:'Theme', field: 'theme', flex: 1 }, {headerName:'Year',  field: 'year', flex: 0.5,type: 'number'}]}
                 filterMode="server"
                 onFilterModelChange={onFilterChange}
                 loading={loading}
+                hideFooter={true}
+                disableSelectionOnClick={true}
             />
         </div>
     );
