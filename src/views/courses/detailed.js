@@ -37,7 +37,7 @@ const CoursesDetailedView = (props) => {
                 {course.theme + ' - ' + course.year}
             </Typography>
             <StudentsGrid loading={loading} students={course.students} />
-            <AddStudent fetchData={fetchCourse}/>
+            <AddStudent courseId={course._id} fetchData={fetchCourse}/>
         </div>
     );
 };

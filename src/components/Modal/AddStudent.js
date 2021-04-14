@@ -11,6 +11,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import { TextField } from '@material-ui/core';
 
 import { postNewStudent } from '../../services/api/courses';
 import { getData } from '../../services/api/students';
@@ -35,20 +36,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const CourseModal = (props) => {
+const StudentAdditionModal = (props) => {
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
     const [student, setStudent] = React.useState(false);
-
     const [students, setStudents] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
-
-    // DATA HANDLER
-    const handleStudentChange = (event) => {
-        console.log(event);
-        setStudent(event.target.value);
-    }
 
     // MODAL HANDLERS
     const handleClickOpen = () => {
@@ -59,16 +53,43 @@ const CourseModal = (props) => {
         setOpen(false);
     };
 
+    const handleAddition = (e) => {
+        e.preventDefault();
+        setLoading(true);
+
+        const res = postNewStudent(props.courseId,{
+            student: student,
+            score: e.target.score.value
+        })
+            .then((res) => {
+                props.fetchData();
+            })
+            .catch((err) => {
+                //TODO: show error
+                console.log(err)
+            })
+            .finally(() => {
+                handleClose();
+                setLoading(false);
+            })
+
+    }
+
+    // DATA HANDLER
+    const handleStudentChange = (event) => {
+        setStudent(event.target.value);
+    }
+
     async function fetchData() {
         var stData = await getData();
-        stData = stData.map((st=>{return {...st, id:st._id}}))
-        
+        stData = stData.map((st => { return { ...st, id: st._id } }))
+
         setStudents(stData);
     }
 
-    useEffect(() => { 
-        fetchData(); 
-    },[student]);
+    useEffect(() => {
+        fetchData();
+    }, [student]);
 
     return (
         <div>
@@ -87,36 +108,51 @@ const CourseModal = (props) => {
                     <DialogContentText>
                         Select the student you want to add to the course.
           </DialogContentText>
-                    <form className={classes.form} noValidate>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="student">Student</InputLabel>
+                    <form id="student-addition" onSubmit={handleAddition} className={classes.form}>
+                       <InputLabel htmlFor="student">Student</InputLabel>
                             <Select
                                 autoFocus
-                                value={student}
-                                onChange={handleStudentChange}
                                 inputProps={{
                                     name: 'student',
                                     id: 'id',
                                 }}
+                                value={student}
+                                onChange={handleStudentChange}
+                                required={true}
+                                id='studentId'
                             >
-                                <MenuItem value={false}>...</MenuItem>
+                                <MenuItem id='false' value={false}>...</MenuItem>
                                 {students.map((st) => {
                                     return (
-                                        <MenuItem value={st.id}>{st.fname + ' ' + st.lname}</MenuItem>
+                                        <MenuItem id={st.id} value={st.id}>{st.fname + ' ' + st.lname}</MenuItem>
                                     )
                                 })}
                             </Select>
-                        </FormControl>
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                id="score"
+                                label="Score"
+                                type="number"
+                                InputProps={{
+                                    inputProps: { 
+                                        max: 10, min: 0 
+                                    }
+                                }}
+                                fullWidth
+                                required={true}
+
+                            />
+                        <DialogActions>
+                            <Button onClick={handleClose} color="primary" disabled={loading}>
+                                Cancel
+                                </Button>
+                            <Button type="submit" color="primary" disabled={loading || !student}>
+                                Add
+                            </Button>
+                        </DialogActions>
                     </form>
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-          </Button>
-                    <Button onClick={handleClose} color="primary" disabled={student === false}>
-                        Add
-          </Button>
-                </DialogActions>
             </Dialog>
         </div>
 
@@ -124,4 +160,4 @@ const CourseModal = (props) => {
 
 }
 
-export default CourseModal;
+export default StudentAdditionModal;
