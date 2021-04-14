@@ -1,7 +1,7 @@
 import { get, post } from '../axios';
 
-export async function getData() {
-	const res = await get('courses');
+export async function getData(params) {
+	const res = await get('courses', params);
 
 	return res.data;
 }

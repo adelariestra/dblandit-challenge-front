@@ -30,6 +30,10 @@ const CourseGrid = (props) => {
     const [filterValue, setFilterValue] = React.useState();
     const [loading, setLoading] = React.useState(false);
 
+    useEffect(()=>{
+        // props.fetchData({theme:"ADR",year:2021})
+    },);
+
     const onFilterChange = React.useCallback((params) => {
         setFilterValue(params.filterModel.items[0].value);
     }, []);

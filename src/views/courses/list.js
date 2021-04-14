@@ -11,9 +11,8 @@ import coursesTestData from '../../constants/fixture/courses'
 const CoursesList = () => {
     const [courses, setCourses] = useState([]);
 
-    async function fetchCourses() {
-        setCourses(await getData());
-        // setCourses(coursesTestData);
+    async function fetchCourses(params) {
+        setCourses(await getData(params));
     }
 
     useEffect(() => {
@@ -25,7 +24,7 @@ const CoursesList = () => {
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
                 Courses
             </Typography>
-            <CourseGrid cards={courses}/>
+            <CourseGrid cards={courses} fetchData={fetchCourses}/>
             <NewCourseModal fetchData={fetchCourses}/>
         </div>
     );

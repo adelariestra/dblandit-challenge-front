@@ -7,9 +7,9 @@ function returnAxiosInstance() {
     });
 }
 
-export function get(url) {
+export function get(url, params) {
 	const axios = returnAxiosInstance();
-	return axios.get(url);
+	return axios.get(url, {params:params});
 }
 
 export function post(url, requestData) {
