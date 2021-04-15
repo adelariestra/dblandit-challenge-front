@@ -42,13 +42,16 @@ const CourseGrid = (props) => {
                         headerName: 'Theme',
                         field: 'theme',
                         flex: 1,
+                        filterable: false,
                         renderCell: (params) => {
                             return (<Link color="inherit" href={`/courses/${params.id}`}>
                                 {params.value}
                             </Link>)
                         }
                     },
-                    { headerName: 'Year', field: 'year', flex: 0.5, type: 'number' }]}
+                    { headerName: 'Year', field: 'year', flex: 0.5, type: 'number' },
+                    { headerName: 'Duration', field: 'duration', width:0, type: 'number' },
+                ]}
                 filterMode="server"
                 onFilterModelChange={onFilterChange}
                 loading={loading}
