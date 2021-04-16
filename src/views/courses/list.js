@@ -15,10 +15,6 @@ const CoursesList = () => {
         setCourses(coursesData.map((card) => { return ({ ...card, id: card._id }) }));
     }
 
-    useEffect(() => {
-        fetchCourses();
-    }, []);
-
     return (
         <div>
             <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>

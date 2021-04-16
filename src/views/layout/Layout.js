@@ -12,7 +12,6 @@ const Layout = (props) => {
             <Container maxWidth="md">
                 {props.children}
             </Container >
-
             <Footer />
         </div>
     );

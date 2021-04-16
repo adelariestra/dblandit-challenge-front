@@ -6,6 +6,7 @@ import CameraIcon from '@material-ui/icons/PhotoCamera';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,9 +24,11 @@ const Header = (props) => {
             <AppBar position="relative">
                 <Toolbar>
                     <CameraIcon className={classes.icon} />
-                    <Typography variant="h6" color="inherit" noWrap>
-                        DBlandIt
-                    </Typography>
+                    <Link color="inherit" href="/" underline="none">
+                        <Typography variant="h6" color="inherit" noWrap>
+                            DBlandIt
+                        </Typography>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </header>
